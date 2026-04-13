@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+release/
+release_eb7/
+
+# Large binaries & installers
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+*.zip
+*.tar.gz
+
+# Python
+pyengine/__pycache__/
+pyengine/*.pyc
+pyengine/.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.*
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Electron build cache
+.electron-builder-cache/
+out/
+
+# Misc
+*.pem
+*.key
+*.cert

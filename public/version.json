@@ -1,0 +1,7 @@
+{
+  "version": "3.0.0",
+  "releaseDate": "2026-04-12",
+  "releaseNotes": "Initial public release",
+  "downloadUrl": "https://tronq.vercel.app/asset/setup/QTron-Installer-v2-x64.exe",
+  "mandatory": false
+}

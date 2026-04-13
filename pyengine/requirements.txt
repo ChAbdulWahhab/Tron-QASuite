@@ -1,0 +1,9 @@
+pytest
+requests
+certifi
+beautifulsoup4
+selenium
+webdriver-manager
+pytest-timeout
+pytest-json-report
+lxml

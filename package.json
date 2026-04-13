@@ -1,0 +1,111 @@
+{
+  "name": "tronui-rn",
+  "version": "3.0.0",
+  "description": "TRON Automated QA Suite",
+  "author": "Systemset Co.",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"vite --force\" \"wait-on http-get://127.0.0.1:5173 && electron .\"",
+    "dev:clean": "node -e \"try{require('fs').rmSync('node_modules/.vite',{recursive:true})}catch(e){}\" && npm run dev",
+    "build": "vite build",
+    "build:engine": "pyinstaller --noconfirm tron.spec",
+    "electron": "electron .",
+    "electron:dir": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win dir",
+    "electron:dir:fresh": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --dir --config.directories.output=release_eb",
+    "electron:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --publish never",
+    "preview": "vite preview",
+    "install-py": "pip install -r pyengine/requirements.txt",
+    "rebuild:electron": "electron-rebuild -f -w better-sqlite3",
+    "docs": "mkdocs serve -f documentation/mkdocs.yml",
+    "docs:build": "mkdocs build -f documentation/mkdocs.yml"
+  },
+  "build": {
+    "appId": "com.tron.qasuite",
+    "productName": "TRON QA Suite",
+    "icon": "branding/tron-app.ico",
+    "afterPack": "scripts/afterPack.js",
+    "forceCodeSigning": false,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "package.json",
+      "electron/**/*",
+      "dist/**/*",
+      "!dist/tron_engine",
+      "!dist/tron_engine/**/*"
+    ],
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "extraResources": [
+      {
+        "from": "dist/tron_engine/",
+        "to": "pyengine/"
+      },
+      {
+        "from": "src/assets",
+        "to": "assets"
+      },
+      {
+        "from": "branding/tron-app.png",
+        "to": "."
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "branding/tron-app.ico"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "branding/tron-app.ico",
+      "executableName": "TRON QA Suite",
+      "verifyUpdateCodeSignature": false,
+      "signAndEditExecutable": false
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "branding/tron-app.ico"
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://tronq.vercel.app/"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "branding/tron-app.ico",
+      "uninstallerIcon": "branding/tron-app.ico",
+      "installerHeaderIcon": "branding/tron-app.ico",
+      "installerSidebar": "branding/tron-sidebar.bmp",
+      "installerHeader": "branding/tron-header.bmp",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TRON QA Suite",
+      "artifactName": "TRONSetup-v3.exe"
+    }
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.6.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.27",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "postcss": "^8.5.9",
+    "rcedit": "^5.0.2",
+    "tailwindcss": "^3.4.0",
+    "vite": "^5.0.8",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.6.0",
+    "docx": "^8.5.0",
+    "electron-updater": "^6.3.9",
+    "pdfkit": "^0.18.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.4.0"
+  }
+}

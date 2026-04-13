@@ -1,0 +1,415 @@
+{
+  "tests": [
+    {
+      "name": "test_page_load_time",
+      "display_name": "Page Load Time",
+      "status": "PASSED",
+      "duration": 2.9547,
+      "message": "PASSED",
+      "category": "performance"
+    },
+    {
+      "name": "test_time_to_first_byte",
+      "display_name": "Time to First Byte (TTFB)",
+      "status": "FAILED",
+      "duration": 2.0694,
+      "message": "tron_engine.py:148: in test_time_to_first_byte\n    assert ttfb < 0.6, f\"FAIL: TTFB {ttfb*1000:.0f}ms (max 600ms)\"\nE   AssertionError: FAIL: TTFB 2068ms (max 600ms)\nE   assert 2.0684194000059506 < 0.6",
+      "category": "performance"
+    },
+    {
+      "name": "test_response_size",
+      "display_name": "Response Size Check",
+      "status": "PASSED",
+      "duration": 2.8203,
+      "message": "PASSED",
+      "category": "performance"
+    },
+    {
+      "name": "test_compression_enabled",
+      "display_name": "Compression Enabled (gzip/brotli)",
+      "status": "FAILED",
+      "duration": 2.868,
+      "message": "tron_engine.py:184: in test_compression_enabled\n    assert ok, \"FAIL: gzip/brotli/deflate not indicated in Content-Encoding\"\nE   AssertionError: FAIL: gzip/brotli/deflate not indicated in Content-Encoding\nE   assert False",
+      "category": "performance"
+    },
+    {
+      "name": "test_cache_headers",
+      "display_name": "Cache-Control Headers",
+      "status": "PASSED",
+      "duration": 2.0349,
+      "message": "PASSED",
+      "category": "performance"
+    },
+    {
+      "name": "test_https_enforced",
+      "display_name": "HTTPS Enforcement",
+      "status": "PASSED",
+      "duration": 0.3258,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_ssl_certificate_valid",
+      "display_name": "SSL Certificate Validity",
+      "status": "PASSED",
+      "duration": 1.7224,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_ssl_certificate_expiry",
+      "display_name": "SSL Certificate Expiry (30d)",
+      "status": "PASSED",
+      "duration": 1.3952,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_security_headers",
+      "display_name": "Security Headers (X-Frame, CSP)",
+      "status": "FAILED",
+      "duration": 1.8176,
+      "message": "tron_engine.py:253: in test_security_headers\n    assert \"x-frame-options\" in h, \"FAIL: missing X-Frame-Options\"\nE   AssertionError: FAIL: missing X-Frame-Options\nE   assert 'x-frame-options' in {'accept-ranges': 'bytes', 'age': '1472', 'cache-control': 'public,max-age=0,must-revalidate', 'cache-status': '\"Netlify Edge\"; hit', ...}",
+      "category": "security"
+    },
+    {
+      "name": "test_hsts_header",
+      "display_name": "HSTS Header Present",
+      "status": "PASSED",
+      "duration": 2.9499,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_cors_policy",
+      "display_name": "CORS Policy Check",
+      "status": "PASSED",
+      "duration": 2.8778,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_sensitive_files_exposed",
+      "display_name": "Sensitive Files Exposure",
+      "status": "PASSED",
+      "duration": 7.5842,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_directory_listing",
+      "display_name": "Directory Listing Disabled",
+      "status": "PASSED",
+      "duration": 2.6536,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_cookie_security",
+      "display_name": "Cookie Security Flags",
+      "status": "PASSED",
+      "duration": 2.1949,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_mixed_content",
+      "display_name": "Mixed Content (HTTP on HTTPS)",
+      "status": "PASSED",
+      "duration": 1.5274,
+      "message": "PASSED",
+      "category": "security"
+    },
+    {
+      "name": "test_meta_title",
+      "display_name": "Meta Title Tag",
+      "status": "FAILED",
+      "duration": 2.2418,
+      "message": "tron_engine.py:327: in test_meta_title\n    assert 10 <= len(s) <= 60, f\"FAIL: title length {len(s)} (want 10\u201360 chars)\"\nE   AssertionError: FAIL: title length 9 (want 10\u201360 chars)\nE   assert 10 <= 9\nE    +  where 9 = len('Systemset')",
+      "category": "seo"
+    },
+    {
+      "name": "test_meta_description",
+      "display_name": "Meta Description Tag",
+      "status": "FAILED",
+      "duration": 1.7449,
+      "message": "tron_engine.py:336: in test_meta_description\n    assert m and 50 <= len(content) <= 160, \"FAIL: meta description 50\u2013160 chars expected\"\nE   AssertionError: FAIL: meta description 50\u2013160 chars expected\nE   assert (None)",
+      "category": "seo"
+    },
+    {
+      "name": "test_meta_viewport",
+      "display_name": "Meta Viewport Tag",
+      "status": "PASSED",
+      "duration": 2.4069,
+      "message": "PASSED",
+      "category": "seo"
+    },
+    {
+      "name": "test_canonical_url",
+      "display_name": "Canonical URL Tag",
+      "status": "FAILED",
+      "duration": 1.8502,
+      "message": "tron_engine.py:352: in test_canonical_url\n    assert c and c.get(\"href\"), \"FAIL: missing canonical link\"\nE   AssertionError: FAIL: missing canonical link\nE   assert (None)",
+      "category": "seo"
+    },
+    {
+      "name": "test_robots_txt",
+      "display_name": "robots.txt Present",
+      "status": "FAILED",
+      "duration": 1.8751,
+      "message": "tron_engine.py:360: in test_robots_txt\n    assert r.status_code == 200 and len(r.text) > 0, \"FAIL: robots.txt missing or empty\"\nE   AssertionError: FAIL: robots.txt missing or empty\nE   assert (404 == 200)\nE    +  where 404 = <Response [404]>.status_code",
+      "category": "seo"
+    },
+    {
+      "name": "test_sitemap_xml",
+      "display_name": "sitemap.xml Present",
+      "status": "FAILED",
+      "duration": 2.0701,
+      "message": "tron_engine.py:368: in test_sitemap_xml\n    assert r.status_code == 200 and (\"<urlset\" in r.text.lower() or \"<sitemapindex\" in r.text.lower()), (\nE   AssertionError: FAIL: sitemap.xml invalid\nE   assert (404 == 200)\nE    +  where 404 = <Response [404]>.status_code",
+      "category": "seo"
+    },
+    {
+      "name": "test_open_graph_tags",
+      "display_name": "Open Graph Tags",
+      "status": "FAILED",
+      "duration": 2.2244,
+      "message": "tron_engine.py:378: in test_open_graph_tags\n    assert og.get(\"og:title\"), \"FAIL: og:title\"\nE   AssertionError: FAIL: og:title\nE   assert None\nE    +  where None = <built-in method get of dict object at 0x00000220BB14B8C0>('og:title')\nE    +    where <built-in method get of dict object at 0x00000220BB14B8C0> = {}.get",
+      "category": "seo"
+    },
+    {
+      "name": "test_heading_structure",
+      "display_name": "Heading Structure (H1)",
+      "status": "FAILED",
+      "duration": 2.5937,
+      "message": "tron_engine.py:388: in test_heading_structure\n    assert len(h1s) == 1, f\"FAIL: expected 1 H1, found {len(h1s)}\"\nE   AssertionError: FAIL: expected 1 H1, found 0\nE   assert 0 == 1\nE    +  where 0 = len([])",
+      "category": "seo"
+    },
+    {
+      "name": "test_image_alt_tags",
+      "display_name": "Image Alt Attributes",
+      "status": "PASSED",
+      "duration": 1.9955,
+      "message": "PASSED",
+      "category": "seo"
+    },
+    {
+      "name": "test_structured_data",
+      "display_name": "Structured Data (JSON-LD)",
+      "status": "FAILED",
+      "duration": 1.0708,
+      "message": "tron_engine.py:407: in test_structured_data\n    assert has_ld or has_micro, \"FAIL: no JSON-LD or microdata\"\nE   AssertionError: FAIL: no JSON-LD or microdata\nE   assert (False or False)",
+      "category": "seo"
+    },
+    {
+      "name": "test_lang_attribute",
+      "display_name": "HTML Lang Attribute",
+      "status": "PASSED",
+      "duration": 1.1377,
+      "message": "PASSED",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_form_labels",
+      "display_name": "Form Input Labels",
+      "status": "PASSED",
+      "duration": 1.1691,
+      "message": "PASSED",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_button_text",
+      "display_name": "Button Accessible Text",
+      "status": "PASSED",
+      "duration": 1.1023,
+      "message": "PASSED",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_link_text",
+      "display_name": "Link Descriptive Text",
+      "status": "PASSED",
+      "duration": 1.1424,
+      "message": "PASSED",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_color_contrast_basic",
+      "display_name": "Color Contrast Basic Check",
+      "status": "PASSED",
+      "duration": 1.121,
+      "message": "PASSED",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_skip_navigation",
+      "display_name": "Skip Navigation Link",
+      "status": "FAILED",
+      "duration": 1.1301,
+      "message": "tron_engine.py:483: in test_skip_navigation\n    pytest.fail(\"FAIL: no skip-to-content link\")\nE   Failed: FAIL: no skip-to-content link",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_aria_landmarks",
+      "display_name": "ARIA Landmarks (main/nav/header)",
+      "status": "FAILED",
+      "duration": 1.0355,
+      "message": "tron_engine.py:493: in test_aria_landmarks\n    assert has_main and has_nav and has_header, \"FAIL: need main, nav, header landmarks\"\nE   AssertionError: FAIL: need main, nav, header landmarks\nE   assert (None)",
+      "category": "accessibility"
+    },
+    {
+      "name": "test_internal_links",
+      "display_name": "Internal Links Reachable",
+      "status": "FAILED",
+      "duration": 1.2042,
+      "message": "tron_engine.py:520: in test_internal_links\n    assert checked > 0, \"FAIL: no internal links to verify\"\nE   AssertionError: FAIL: no internal links to verify\nE   assert 0 > 0",
+      "category": "links"
+    },
+    {
+      "name": "test_external_links_sample",
+      "display_name": "External Links Sample Check",
+      "status": "PASSED",
+      "duration": 1.1701,
+      "message": "PASSED",
+      "category": "links"
+    },
+    {
+      "name": "test_image_sources",
+      "display_name": "Image Sources Reachable",
+      "status": "PASSED",
+      "duration": 1.4104,
+      "message": "PASSED",
+      "category": "links"
+    },
+    {
+      "name": "test_css_sources",
+      "display_name": "CSS Files Reachable",
+      "status": "PASSED",
+      "duration": 2.6965,
+      "message": "PASSED",
+      "category": "links"
+    },
+    {
+      "name": "test_js_sources",
+      "display_name": "JavaScript Files Reachable",
+      "status": "PASSED",
+      "duration": 2.3901,
+      "message": "PASSED",
+      "category": "links"
+    },
+    {
+      "name": "test_favicon_exists",
+      "display_name": "Favicon Present",
+      "status": "FAILED",
+      "duration": 1.1434,
+      "message": "tron_engine.py:590: in test_favicon_exists\n    assert r.status_code == 200 and len(r.content) > 0, \"FAIL: favicon.ico\"\nE   AssertionError: FAIL: favicon.ico\nE   assert (404 == 200)\nE    +  where 404 = <Response [404]>.status_code",
+      "category": "links"
+    },
+    {
+      "name": "test_no_lorem_ipsum",
+      "display_name": "No Placeholder Text",
+      "status": "PASSED",
+      "duration": 1.1456,
+      "message": "PASSED",
+      "category": "content"
+    },
+    {
+      "name": "test_no_broken_html",
+      "display_name": "Well-Formed HTML",
+      "status": "PASSED",
+      "duration": 1.1421,
+      "message": "PASSED",
+      "category": "content"
+    },
+    {
+      "name": "test_404_page_exists",
+      "display_name": "Custom 404 Page",
+      "status": "PASSED",
+      "duration": 1.3907,
+      "message": "PASSED",
+      "category": "content"
+    },
+    {
+      "name": "test_page_encoding",
+      "display_name": "UTF-8 Charset Declared",
+      "status": "PASSED",
+      "duration": 1.41,
+      "message": "PASSED",
+      "category": "content"
+    },
+    {
+      "name": "test_no_console_errors",
+      "display_name": "No JavaScript Console Errors",
+      "status": "FAILED",
+      "duration": 10.0449,
+      "message": "tron_engine.py:668: in test_no_console_errors\n    selenium_driver.get(base_url)\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:466: in get\n    self.execute(Command.GET, {\"url\": url})\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:446: in execute\n    self.error_handler.check_response(response)\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py:232: in check_response\n    raise exception_class(message, screen, stacktrace)\nE   selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 9.317\nE     (Session info: chrome=146.0.7680.178)\nE   Stacktrace:\nE   \tchromedriver!GetHandleVerifier [0xe1cdf3+10b03]\nE   \tchromedriver!GetHandleVerifier [0xe1cf24+10c34]\nE   \tchromedriver!(No symbol) [0xc02120]\nE   \tchromedriver!(No symbol) [0xbf24b3]\nE   \tchromedriver!(No symbol) [0xbf21e5]\nE   \tchromedriver!(No symbol) [0xbf02f8]\nE   \tchromedriver!(No symbol) [0xbf0b46]\nE   \tchromedriver!(No symbol) [0xbfd9cb]\nE   \tchromedriver!(No symbol) [0xc0f76e]\nE   \tchromedriver!(No symbol) [0xc151d6]\nE   \tchromedriver!(No symbol) [0xbf11cc]\nE   \tchromedriver!(No symbol) [0xc0f4e2]\nE   \tchromedriver!(No symbol) [0xc8acba]\nE   \tchromedriver!(No symbol) [0xc6d8a6]\nE   \tchromedriver!(No symbol) [0xc40229]\nE   \tchromedriver!(No symbol) [0xc40fe4]\nE   \tchromedriver!GetHandleVerifier [0x10848b9+2785c9]\nE   \tchromedriver!GetHandleVerifier [0x107feb5+273bc5]\nE   \tchromedriver!GetHandleVerifier [0x109e06b+291d7b]\nE   \tchromedriver!GetHandleVerifier [0xe35cc8+299d8]\nE   \tchromedriver!GetHandleVerifier [0xe3d9fd+3170d]\nE   \tchromedriver!GetHandleVerifier [0xe258c8+195d8]\nE   \tchromedriver!GetHandleVerifier [0xe25a92+197a2]\nE   \tchromedriver!GetHandleVerifier [0xe0ee9a+2baa]\nE   \tKERNEL32!BaseThreadInitThunk [0x76ae5d49+19]\nE   \tntdll!RtlInitializeExceptionChain [0x77a1d83b+6b]\nE   \tntdll!RtlGetAppContainerNamedObjectPath [0x77a1d7c1+231]",
+      "category": "content"
+    },
+    {
+      "name": "test_viewport_meta",
+      "display_name": "Viewport Meta Tag",
+      "status": "PASSED",
+      "duration": 1.7728,
+      "message": "PASSED",
+      "category": "mobile"
+    },
+    {
+      "name": "test_touch_icons",
+      "display_name": "Apple Touch Icon",
+      "status": "FAILED",
+      "duration": 1.1716,
+      "message": "tron_engine.py:696: in test_touch_icons\n    assert found, \"FAIL: apple-touch-icon link missing\"\nE   AssertionError: FAIL: apple-touch-icon link missing\nE   assert None",
+      "category": "mobile"
+    },
+    {
+      "name": "test_mobile_rendering",
+      "display_name": "Mobile Rendering (375px)",
+      "status": "FAILED",
+      "duration": 10.4232,
+      "message": "tron_engine.py:704: in test_mobile_rendering\n    selenium_driver.get(base_url)\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:466: in get\n    self.execute(Command.GET, {\"url\": url})\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\webdriver.py:446: in execute\n    self.error_handler.check_response(response)\nC:\\Users\\Abdul Wahab\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\selenium\\webdriver\\remote\\errorhandler.py:232: in check_response\n    raise exception_class(message, screen, stacktrace)\nE   selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 9.717\nE     (Session info: chrome=146.0.7680.178)\nE   Stacktrace:\nE   \tchromedriver!GetHandleVerifier [0xe1cdf3+10b03]\nE   \tchromedriver!GetHandleVerifier [0xe1cf24+10c34]\nE   \tchromedriver!(No symbol) [0xc02120]\nE   \tchromedriver!(No symbol) [0xbf24b3]\nE   \tchromedriver!(No symbol) [0xbf21e5]\nE   \tchromedriver!(No symbol) [0xbf02f8]\nE   \tchromedriver!(No symbol) [0xbf0b46]\nE   \tchromedriver!(No symbol) [0xbfd9cb]\nE   \tchromedriver!(No symbol) [0xc0f76e]\nE   \tchromedriver!(No symbol) [0xc151d6]\nE   \tchromedriver!(No symbol) [0xbf11cc]\nE   \tchromedriver!(No symbol) [0xc0f4e2]\nE   \tchromedriver!(No symbol) [0xc8acba]\nE   \tchromedriver!(No symbol) [0xc6d8a6]\nE   \tchromedriver!(No symbol) [0xc40229]\nE   \tchromedriver!(No symbol) [0xc40fe4]\nE   \tchromedriver!GetHandleVerifier [0x10848b9+2785c9]\nE   \tchromedriver!GetHandleVerifier [0x107feb5+273bc5]\nE   \tchromedriver!GetHandleVerifier [0x109e06b+291d7b]\nE   \tchromedriver!GetHandleVerifier [0xe35cc8+299d8]\nE   \tchromedriver!GetHandleVerifier [0xe3d9fd+3170d]\nE   \tchromedriver!GetHandleVerifier [0xe258c8+195d8]\nE   \tchromedriver!GetHandleVerifier [0xe25a92+197a2]\nE   \tchromedriver!GetHandleVerifier [0xe0ee9a+2baa]\nE   \tKERNEL32!BaseThreadInitThunk [0x76ae5d49+19]\nE   \tntdll!RtlInitializeExceptionChain [0x77a1d83b+6b]\nE   \tntdll!RtlGetAppContainerNamedObjectPath [0x77a1d7c1+231]",
+      "category": "mobile"
+    },
+    {
+      "name": "test_dns_resolves",
+      "display_name": "DNS Resolution",
+      "status": "PASSED",
+      "duration": 0.0037,
+      "message": "PASSED",
+      "category": "infrastructure"
+    },
+    {
+      "name": "test_www_redirect",
+      "display_name": "WWW Redirect Behavior",
+      "status": "PASSED",
+      "duration": 3.5575,
+      "message": "PASSED",
+      "category": "infrastructure"
+    },
+    {
+      "name": "test_server_header_info",
+      "display_name": "Server Header Info Exposure",
+      "status": "PASSED",
+      "duration": 1.8797,
+      "message": "PASSED",
+      "category": "infrastructure"
+    },
+    {
+      "name": "test_x_powered_by_hidden",
+      "display_name": "X-Powered-By Header Hidden",
+      "status": "PASSED",
+      "duration": 1.9203,
+      "message": "PASSED",
+      "category": "infrastructure"
+    },
+    {
+      "name": "test_content_type_header",
+      "display_name": "Content-Type Header",
+      "status": "PASSED",
+      "duration": 1.8557,
+      "message": "PASSED",
+      "category": "infrastructure"
+    }
+  ],
+  "completed": 51,
+  "total": 51,
+  "updated_at": "2026-04-12T20:29:16.894776Z"
+}
