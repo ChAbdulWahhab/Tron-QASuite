@@ -25,16 +25,16 @@
 !define REG_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 !define REG_INSTALLDIR "Software\${APP_NAME}"
 
-VIProductVersion "__SOFTWARE_VERSION_DOT__.0"
+VIProductVersion "3.1.1.0"
 VIAddVersionKey "ProductName" "${APP_FRIENDLY_NAME}"
 VIAddVersionKey "CompanyName" "${COMPANY_NAME}"
 VIAddVersionKey "LegalCopyright" "Copyright (c) 2024 ${COMPANY_NAME}"
 VIAddVersionKey "FileDescription" "TRON QA Suite Installer"
-VIAddVersionKey "FileVersion" "__SOFTWARE_VERSION__"
-VIAddVersionKey "ProductVersion" "__SOFTWARE_VERSION__"
+VIAddVersionKey "FileVersion" "3.1.1"
+VIAddVersionKey "ProductVersion" "3.1.1"
 
 Name "${APP_FRIENDLY_NAME}"
-OutFile "TRONSetup-v__SOFTWARE_VERSION__.exe"
+OutFile "TRONSetup-v3.1.1.exe"
 Icon "branding\tron-app.ico"
 UninstallIcon "branding\tron-app.ico"
 BrandingText "${APP_FRIENDLY_NAME}"
@@ -125,7 +125,7 @@ Section "Install"
   WriteRegStr HKLM "${REG_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKLM "${REG_KEY}" "DisplayIcon" "$INSTDIR\tron-app.ico"
   WriteRegStr HKLM "${REG_KEY}" "Publisher" "${COMPANY_NAME}"
-  WriteRegStr HKLM "${REG_KEY}" "DisplayVersion" "__SOFTWARE_VERSION__"
+  WriteRegStr HKLM "${REG_KEY}" "DisplayVersion" "3.1.1"
   WriteRegDWORD HKLM "${REG_KEY}" "NoModify" 1
   WriteRegDWORD HKLM "${REG_KEY}" "NoRepair" 1
 

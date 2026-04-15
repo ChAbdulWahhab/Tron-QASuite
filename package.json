@@ -13,6 +13,8 @@
     "electron:dir": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win dir",
     "electron:dir:fresh": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --dir --config.directories.output=release_eb",
     "electron:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --publish never",
+    "electron:mac": "npm run build && npm run icon:mac && electron-builder --mac",
+    "icon:mac": "node scripts/create-mac-icon.js",
     "preview": "vite preview",
     "install-py": "pip install -r pyengine/requirements.txt",
     "rebuild:electron": "electron-rebuild -f -w better-sqlite3",
@@ -22,7 +24,7 @@
   "build": {
     "appId": "com.tron.qasuite",
     "productName": "TRON QA Suite",
-    "icon": "branding/tron-app.ico",
+    "icon": "branding/tron-app.png",
     "afterPack": "scripts/afterPack.js",
     "forceCodeSigning": false,
     "directories": {
@@ -38,41 +40,53 @@
     "asarUnpack": [
       "**/*.node"
     ],
-    "extraResources": [
-      {
-        "from": "dist/tron_engine/",
-        "to": "pyengine/"
-      },
-      {
-        "from": "src/assets",
-        "to": "assets"
-      },
-      {
-        "from": "branding/tron-app.png",
-        "to": "."
-      }
-    ],
     "mac": {
       "category": "public.app-category.utilities",
-      "icon": "branding/tron-app.ico",
+      "icon": "branding/tron-app.icns",
       "target": [
         {
           "target": "dmg",
           "arch": ["x64", "arm64"]
         }
       ],
-      "artifactName": "${productName}-${version}-${arch}.${ext}"
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "extraResources": [
+        {
+          "from": "src/assets",
+          "to": "assets"
+        },
+        {
+          "from": "branding/tron-app.png",
+          "to": "."
+        }
+      ]
     },
     "win": {
       "target": "nsis",
       "icon": "branding/tron-app.ico",
       "executableName": "TRON QA Suite",
       "verifyUpdateCodeSignature": false,
-      "signAndEditExecutable": false
+      "signAndEditExecutable": false,
+      "extraResources": [
+        {
+          "from": "dist/tron_engine/",
+          "to": "pyengine/"
+        }
+      ]
     },
     "linux": {
       "target": "AppImage",
-      "icon": "branding/tron-app.ico"
+      "icon": "branding/tron-app.png",
+      "extraResources": [
+        {
+          "from": "src/assets",
+          "to": "assets"
+        },
+        {
+          "from": "branding/tron-app.png",
+          "to": "."
+        }
+      ]
     },
     "publish": {
       "provider": "generic",
