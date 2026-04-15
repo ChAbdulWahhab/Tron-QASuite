@@ -16,7 +16,7 @@
     "electron:mac": "npm run build && npm run build:engine && npm run icon:mac && electron-builder --mac",
     "icon:mac": "node scripts/create-mac-icon.js",
     "preview": "vite preview",
-    "install-py": "pip install -r pyengine/requirements.txt",
+    "install-py": "pip install certifi pytest requests beautifulsoup4 selenium webdriver-manager pytest-timeout pytest-json-report lxml",
     "rebuild:electron": "electron-rebuild -f -w better-sqlite3",
     "docs": "mkdocs serve -f documentation/mkdocs.yml",
     "docs:build": "mkdocs build -f documentation/mkdocs.yml"
