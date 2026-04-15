@@ -209,9 +209,7 @@ async function saveReportToDisk(report, format, win) {
   return { ok: true, path: filePath };
 }
 
-async function checkForUpdates(silent = false) {
-  const win = BrowserWindow.getFocusedWindow() || mainWindow;
-  const dialogIcon = loadNativeIconFromPath(getIconPath());
+async function checkForUpdates() {
   try {
     const currentVersion = app.getVersion();
     const versionData = await new Promise((resolve, reject) => {
@@ -247,47 +245,14 @@ async function checkForUpdates(silent = false) {
         sensitivity: 'base'
       }) > 0;
 
-    if (isNewer) {
-      sendToRenderer('update-available', {
-        version: latestVersion,
-        releaseNotes: versionData.releaseNotes || '',
-        downloadUrl: versionData.downloadUrl || 'https://tronq.vercel.app/'
-      });
-      if (!silent && win && !win.isDestroyed()) {
-        const result = await dialog.showMessageBox(win, {
-          type: 'info',
-          title: 'Update Available',
-          message: `TRON v${latestVersion} is available!`,
-          detail: `Current: v${currentVersion}\nNew: v${latestVersion}\n\nRelease Notes:\n${versionData.releaseNotes || '—'}\n\nDownload the new version?`,
-          buttons: ['Download Now', 'Remind Me Later'],
-          defaultId: 0,
-          icon: dialogIcon && !dialogIcon.isEmpty() ? dialogIcon : undefined
-        });
-        if (result.response === 0 && versionData.downloadUrl) {
-          await shell.openExternal(versionData.downloadUrl);
-        }
-      }
-    } else if (!silent && win && !win.isDestroyed()) {
-      await dialog.showMessageBox(win, {
-        type: 'info',
-        title: 'No Updates',
-        message: 'TRON is up to date!',
-        detail: `You are running the latest version (v${currentVersion}).`,
-        buttons: ['OK'],
-        icon: dialogIcon && !dialogIcon.isEmpty() ? dialogIcon : undefined
-      });
-    }
+    sendToRenderer('update-available', {
+      version: isNewer ? latestVersion : null,
+      releaseNotes: versionData.releaseNotes || '',
+      downloadUrl: versionData.downloadUrl || 'https://tronq.vercel.app/docs'
+    });
   } catch (e) {
-    if (!silent && win && !win.isDestroyed()) {
-      await dialog.showMessageBox(win, {
-        type: 'warning',
-        title: 'Update Check Failed',
-        message: 'Could not check for updates.',
-        detail: 'Please check your internet connection or visit tronq.vercel.app',
-        buttons: ['OK'],
-        icon: dialogIcon && !dialogIcon.isEmpty() ? dialogIcon : undefined
-      });
-    }
+    console.error('[tron] update check failed:', e.message);
+    sendToRenderer('update-available', { version: null });
   }
 }
 
@@ -379,12 +344,12 @@ function buildApplicationMenu() {
         {
           label: 'Check for Updates...',
           click: () => {
-            checkForUpdates(false).catch(() => {});
+            checkForUpdates().catch(() => {});
           }
         },
         {
           label: 'Documentation',
-          click: () => shell.openExternal('https://tronq.vercel.app/')
+          click: () => shell.openExternal('https://tronq.vercel.app/docs')
         },
         {
           label: 'Report a Bug',
@@ -912,8 +877,12 @@ ipcMain.handle('open-external', async (_e, url) => {
 });
 
 ipcMain.handle('check-updates', async () => {
-  await checkForUpdates(false);
+  await checkForUpdates();
   return { ok: true };
+});
+
+ipcMain.handle('get-app-version', async () => {
+  return { version: app.getVersion() };
 });
 
 ipcMain.handle('get-install-reset-once', async () => {
@@ -930,9 +899,6 @@ app.whenReady().then(() => {
     console.error('Database init failed', e);
   }
   createWindow();
-  setTimeout(() => {
-    checkForUpdates(true).catch(() => {});
-  }, 3000);
 });
 
 app.on('window-all-closed', () => {

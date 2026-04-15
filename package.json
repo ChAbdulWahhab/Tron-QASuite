@@ -1,6 +1,6 @@
 {
   "name": "tronui-rn",
-  "version": "3.0.0",
+  "version": "3.1.1",
   "description": "TRON Automated QA Suite",
   "author": "Systemset Co.",
   "main": "electron/main.js",
@@ -54,7 +54,14 @@
     ],
     "mac": {
       "category": "public.app-category.utilities",
-      "icon": "branding/tron-app.ico"
+      "icon": "branding/tron-app.ico",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "win": {
       "target": "nsis",
@@ -82,7 +89,7 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "TRON QA Suite",
-      "artifactName": "TRONSetup-v3.exe"
+      "artifactName": "${productName}-Setup-v${version}.${ext}"
     }
   },
   "devDependencies": {

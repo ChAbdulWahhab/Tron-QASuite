@@ -49,7 +49,8 @@ function Sidebar({
   isRunning,
   onRunSuite,
   onStopSuite,
-  onToggleSidebar
+  onToggleSidebar,
+  appVersion
 }) {
   const [savedUrls, setSavedUrls] = useState([])
   const urlOk = isValidUrl(targetUrl?.trim?.() || '')
@@ -116,7 +117,7 @@ function Sidebar({
           <img src={tronWindow} alt="" style={{ width: '36px', height: '36px', objectFit: 'contain' }} />
           <div>
             <div style={{ fontSize: '14px', fontWeight: 600, color: '#199998', lineHeight: 1.2 }}>TRON</div>
-            <div style={{ fontSize: '11px', color: '#9F9F9B' }}>(v3-x64)</div>
+            <div style={{ fontSize: '11px', color: '#9F9F9B' }}>({appVersion || 'v3-x64'})</div>
           </div>
         </div>
         <button

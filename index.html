@@ -5,9 +5,26 @@
     <link rel="icon" type="image/png" href="/tron-app.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRON Automated QA Suite</title>
+    <style>
+      body { margin: 0; background: linear-gradient(165deg, #e9edf2 0%, #f6f8fa 55%, #e8f4f3 100%); min-height: 100vh; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .preload { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 9999; }
+      .preload-logo { width: 88px; height: 88px; border-radius: 18px; box-shadow: 0 4px 14px rgba(15,23,42,0.08); }
+      .preload-brand { margin-top: 20px; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: #111418; }
+      .preload-tagline { margin-top: 6px; font-size: 13px; color: #3f4752; }
+      .preload-bar { margin-top: 20px; width: 220px; height: 4px; border-radius: 4px; background: #dde2e8; overflow: hidden; }
+      .preload-bar-fill { height: 100%; width: 40%; border-radius: 4px; background: linear-gradient(90deg, #0d9488, #4fd1c5); animation: preload-slide 1.1s ease-in-out infinite; }
+      @keyframes preload-slide { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="preload">
+        <img class="preload-logo" src="/tron-app.png" alt="" />
+        <div class="preload-brand">TRON QA Suite</div>
+        <div class="preload-tagline">Automated Quality Verification</div>
+        <div class="preload-bar"><div class="preload-bar-fill"></div></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

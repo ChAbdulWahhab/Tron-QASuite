@@ -51,6 +51,7 @@ function App() {
   const [resultMeta, setResultMeta] = useState({ total: null, completed: 0 })
   const [insights, setInsights] = useState(INITIAL_INSIGHTS)
   const [updateBanner, setUpdateBanner] = useState(null)
+  const [appVersion, setAppVersion] = useState('v3')
   const [showSplash, setShowSplash] = useState(true)
   const testsRef = useRef([])
 
@@ -76,6 +77,35 @@ function App() {
       cancelled = true
       window.cancelAnimationFrame(rafId)
       if (timeoutId != null) window.clearTimeout(timeoutId)
+    }
+  }, [])
+
+  useEffect(() => {
+    const api = typeof window !== 'undefined' ? window.electronAPI : null
+    if (!api?.getAppVersion) return
+    api.getAppVersion().then((r) => {
+      if (r?.version) setAppVersion(`v${r.version}`)
+    }).catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    if (showSplash) return
+    const api = typeof window !== 'undefined' ? window.electronAPI : null
+    if (!api?.checkForUpdates) return
+    const timer = setTimeout(() => {
+      api.checkForUpdates()
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [showSplash])
+
+  useEffect(() => {
+    const api = typeof window !== 'undefined' ? window.electronAPI : null
+    if (!api?.onUpdateAvailable) return undefined
+    const unsub = api.onUpdateAvailable((payload) => {
+      setUpdateBanner(payload?.version ? payload : null)
+    })
+    return () => {
+      if (typeof unsub === 'function') unsub()
     }
   }, [])
 
@@ -122,17 +152,6 @@ function App() {
 
     return () => {
       api.removeAllListeners?.()
-    }
-  }, [])
-
-  useEffect(() => {
-    const api = typeof window !== 'undefined' ? window.electronAPI : null
-    if (!api?.onUpdateAvailable) return undefined
-    const unsub = api.onUpdateAvailable((payload) => {
-      setUpdateBanner(payload && payload.version ? payload : null)
-    })
-    return () => {
-      if (typeof unsub === 'function') unsub()
     }
   }, [])
 
@@ -325,27 +344,16 @@ function App() {
             isRunning={isRunning}
             sidebarOpen={sidebarOpen}
             onOpenSidebar={() => setSidebarOpen(true)}
+            updateVersion={updateBanner?.version}
+            appVersion={appVersion}
           />
         </div>
       </div>
       <div className="tron-statusbar">
         <span className="tron-statusbar__brand">TRON</span>
-        <span className="tron-statusbar__muted">QA Suite v3</span>
+        <span className="tron-statusbar__muted">QA Suite {appVersion}</span>
         <span className="tron-statusbar__dot" aria-hidden />
         <span className="tron-statusbar__muted">Systemset Co.</span>
-        {updateBanner ? (
-          <>
-            <span className="tron-statusbar__dot" aria-hidden />
-            <span className="tron-update-pulse" aria-hidden />
-            <button
-              type="button"
-              className="tron-statusbar__link tron-statusbar__update"
-              onClick={() => window.electronAPI?.checkForUpdates?.()}
-            >
-              Update v{updateBanner.version}
-            </button>
-          </>
-        ) : null}
         <div className="tron-statusbar__spacer" />
         <span className="tron-statusbar__url" title={targetUrl || undefined}>
           {targetUrl ? targetUrl : '—'}

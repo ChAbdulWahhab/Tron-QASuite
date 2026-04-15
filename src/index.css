@@ -48,12 +48,31 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: default;
+}
+
+button,
+input,
+select,
+textarea {
+  cursor: default;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+  cursor: text;
 }
 
 html,
 body,
 #root {
   height: 100%;
+  cursor: default;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 13px;
   font-weight: 400;
@@ -165,7 +184,6 @@ body,
   color: var(--accent);
   font: inherit;
   font-weight: 500;
-  cursor: pointer;
   text-decoration: none;
   padding: 2px 4px;
   border-radius: 3px;
@@ -245,7 +263,7 @@ body,
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--text-secondary);
-  cursor: pointer;
+  
   opacity: 0.55;
   transition: opacity 0.15s ease, color 0.15s ease;
 }
@@ -341,7 +359,7 @@ body,
   background: var(--accent);
   border: none;
   border-radius: var(--radius-sm);
-  cursor: pointer;
+  
   transition: background 0.15s ease, transform 0.08s ease;
 }
 
@@ -363,7 +381,7 @@ body,
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   outline: none;
-  cursor: pointer;
+  
   transition: border-color 0.15s ease;
 }
 
@@ -398,7 +416,7 @@ body,
   color: #fff;
   font-size: 13px;
   font-weight: 600;
-  cursor: pointer;
+  
   transition: background 0.15s ease, transform 0.08s ease;
 }
 
@@ -419,7 +437,7 @@ body,
   color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;
-  cursor: pointer;
+  
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
@@ -434,7 +452,7 @@ body,
   align-items: center;
   gap: 10px;
   padding: 0 16px;
-  cursor: pointer;
+  
   user-select: none;
 }
 
@@ -547,7 +565,7 @@ body,
   padding: 0;
   font-size: 11px;
   color: var(--text-muted);
-  cursor: pointer;
+  
   transition: color 0.15s ease;
 }
 
@@ -604,7 +622,7 @@ body,
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--text-secondary);
-  cursor: pointer;
+  
   box-shadow: none;
   opacity: 0.55;
   transition: opacity 0.15s ease, color 0.15s ease, background 0.15s ease;
@@ -688,7 +706,7 @@ body,
   font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
-  cursor: pointer;
+  
   transition: color 0.15s ease;
   box-shadow: none;
 }
@@ -796,7 +814,7 @@ body,
   font-size: 11px;
   font-weight: 500;
   color: var(--text-secondary);
-  cursor: pointer;
+  
   user-select: none;
   flex-shrink: 0;
 }
@@ -805,7 +823,7 @@ body,
   width: 13px;
   height: 13px;
   accent-color: var(--accent);
-  cursor: pointer;
+  
 }
 
 /* ——— Data table ——— */
@@ -975,7 +993,7 @@ body,
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -993,7 +1011,7 @@ body,
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -1016,7 +1034,7 @@ body,
   background: #fef2f2;
   border: 1px solid #fecaca;
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -1034,7 +1052,7 @@ body,
   width: 15px;
   height: 15px;
   accent-color: var(--accent);
-  cursor: pointer;
+  
 }
 
 .tron-archives__btn-view {
@@ -1046,7 +1064,7 @@ body,
   background: var(--accent);
   border: none;
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
   transition: background 0.15s ease;
 }
 
@@ -1073,7 +1091,7 @@ body,
   font-size: 11px;
   font-weight: 600;
   border-radius: 4px;
-  cursor: pointer;
+  
   margin-right: 6px;
 }
 
@@ -1142,7 +1160,7 @@ body,
   background: transparent;
   color: var(--text-muted);
   font-size: 10px;
-  cursor: pointer;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1174,7 +1192,7 @@ body,
   border: 1px solid var(--border);
   border-radius: 4px;
   outline: none;
-  cursor: pointer;
+  
 }
 
 .tron-logs__select:hover {
@@ -1191,7 +1209,7 @@ body,
   gap: 6px;
   font-size: 11px;
   color: var(--text-secondary);
-  cursor: pointer;
+  
   user-select: none;
 }
 
@@ -1199,7 +1217,7 @@ body,
   accent-color: var(--accent);
   width: 13px;
   height: 13px;
-  cursor: pointer;
+  
 }
 
 .tron-logs__body {
@@ -1212,6 +1230,7 @@ body,
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: #cececa #f4f8ff;
+  cursor: text;
 }
 
 .tron-logs__body::-webkit-scrollbar {
@@ -1321,22 +1340,6 @@ body,
   color: var(--text-secondary);
 }
 
-.tron-splash__spinner {
-  margin-top: 28px;
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--border);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: tron-splash-spin 0.75s linear infinite;
-}
-
-@keyframes tron-splash-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .tron-splash__bar {
   margin-top: 20px;
   width: 220px;
@@ -1363,6 +1366,23 @@ body,
   }
 }
 
+.tron-header__update-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.tron-header__update-link:hover {
+  text-decoration: underline;
+}
+
 /* ——— Header mini-game ——— */
 .tron-header__build-label {
   font-size: 11px;
@@ -1386,7 +1406,7 @@ body,
   background: linear-gradient(180deg, #fff 0%, var(--bg-subtle) 100%);
   border: 1px solid var(--border);
   border-radius: 999px;
-  cursor: pointer;
+  
   box-shadow: var(--shadow-sm);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -1478,7 +1498,7 @@ body,
   background: transparent;
   border: none;
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
 }
 
 .tron-header__game-popover-close:hover {
@@ -1520,7 +1540,7 @@ body,
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
   transition: background 0.12s ease, border-color 0.12s ease;
 }
 
@@ -1558,7 +1578,7 @@ body,
   background: var(--bg-subtle);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  cursor: pointer;
+  
 }
 
 .tron-ttt__reset:hover {

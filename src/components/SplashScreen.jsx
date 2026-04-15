@@ -9,7 +9,6 @@ export default function SplashScreen({ visible }) {
         <img className="tron-splash__logo" src={logoUrl} alt="" width={88} height={88} />
         <div className="tron-splash__brand">TRON QA Suite</div>
         <div className="tron-splash__tagline">Automated Quality Verification</div>
-        <div className="tron-splash__spinner" aria-hidden />
         <div className="tron-splash__bar" aria-hidden>
           <div className="tron-splash__bar-fill" />
         </div>

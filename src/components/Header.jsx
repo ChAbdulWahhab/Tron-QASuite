@@ -3,8 +3,12 @@ import { TbLayoutSidebarLeftExpand } from 'react-icons/tb'
 import { IoGameControllerOutline } from 'react-icons/io5'
 import TicTacToe from './TicTacToe.jsx'
 
-export default function Header({ isRunning, sidebarOpen, onOpenSidebar }) {
+export default function Header({ isRunning, sidebarOpen, onOpenSidebar, updateVersion }) {
   const [gameOpen, setGameOpen] = useState(false)
+
+  const handleUpdateClick = () => {
+    window.electronAPI?.openExternal?.('https://tronq.vercel.app/')
+  }
 
   useEffect(() => {
     if (!isRunning) setGameOpen(false)
@@ -34,6 +38,16 @@ export default function Header({ isRunning, sidebarOpen, onOpenSidebar }) {
           </button>
         ) : null}
         <span className="tron-header__subtitle">Automated Quality Verification Software</span>
+        {updateVersion ? (
+          <button
+            type="button"
+            className="tron-header__update-link"
+            onClick={handleUpdateClick}
+            title={`Update v${updateVersion} is available. Click to see details.`}
+          >
+            Update v{updateVersion}
+          </button>
+        ) : null}
       </div>
       <div className="tron-header__right">
         {isRunning ? (
