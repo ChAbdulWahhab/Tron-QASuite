@@ -401,10 +401,17 @@ function createWindow() {
 
   if (isDev) {
     const devUrl = process.env.VITE_DEV_SERVER_URL || 'http://127.0.0.1:5173';
-    mainWindow.loadURL(devUrl);
+    mainWindow.loadURL(devUrl).catch((err) => {
+      console.error('Failed to load dev URL:', err);
+    });
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    const indexPath = path.join(__dirname, '../dist/index.html');
+    mainWindow.loadFile(indexPath).catch((err) => {
+      console.error('Failed to load index.html:', err);
+      // Fallback: show dev tools if loading fails in production to see errors
+      mainWindow.webContents.openDevTools();
+    });
   }
 
   mainWindow.webContents.once('did-finish-load', () => {
@@ -473,7 +480,8 @@ ipcMain.handle('run-qa-suite', async (event, payload) => {
 
   if (app.isPackaged) {
     pyEnginePath = path.join(process.resourcesPath, 'pyengine');
-    pythonScript = path.join(pyEnginePath, 'tron_engine.exe');
+    const exeName = process.platform === 'win32' ? 'tron_engine.exe' : 'tron_engine';
+    pythonScript = path.join(pyEnginePath, exeName);
   } else {
     pyEnginePath = path.join(getProjectRoot(), 'pyengine');
     pythonScript = path.join(pyEnginePath, 'tron_engine.py');

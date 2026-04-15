@@ -13,7 +13,7 @@
     "electron:dir": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win dir",
     "electron:dir:fresh": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --dir --config.directories.output=release_eb",
     "electron:win": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --publish never",
-    "electron:mac": "npm run build && npm run icon:mac && electron-builder --mac",
+    "electron:mac": "npm run build && npm run build:engine && npm run icon:mac && electron-builder --mac",
     "icon:mac": "node scripts/create-mac-icon.js",
     "preview": "vite preview",
     "install-py": "pip install -r pyengine/requirements.txt",
@@ -46,11 +46,18 @@
       "target": [
         {
           "target": "dmg",
-          "arch": ["x64", "arm64"]
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         }
       ],
       "artifactName": "${productName}-${version}-${arch}.${ext}",
       "extraResources": [
+        {
+          "from": "dist/tron_engine/",
+          "to": "pyengine/"
+        },
         {
           "from": "src/assets",
           "to": "assets"
